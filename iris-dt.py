@@ -26,6 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 
 # Train a decision tree model
 mlflow.set_experiment('iris-decision-tree')
+mlflow.autolog()
 
 with mlflow.start_run():
     max_depth = 5
@@ -43,10 +44,10 @@ with mlflow.start_run():
     precision = precision_score(y_test, y_pred, average='macro')
     recall = recall_score(y_test, y_pred, average='macro')
     f1 = f1_score(y_test, y_pred, average='macro')
-    mlflow.log_metric('accuracy',accuracy)
-    mlflow.log_metric('precision',precision)
-    mlflow.log_metric('recall',recall)
-    mlflow.log_metric('f1_score',f1)
+    # mlflow.log_metric('accuracy',accuracy)
+    # mlflow.log_metric('precision',precision)
+    # mlflow.log_metric('recall',recall)
+    # mlflow.log_metric('f1_score',f1)
     # mlflow.log_metric('classification-report',classi_report)
 
 
@@ -62,12 +63,12 @@ with mlflow.start_run():
     plt.savefig('confusion_matrix.png')
 
     # artifect
-    mlflow.log_artifact('confusion_matrix.png')
-    mlflow.log_artifact(__file__)
-    mlflow.sklearn.log_model(clf,'Decision Tree')
+    # mlflow.log_artifact('confusion_matrix.png')
+    # mlflow.log_artifact(__file__)
+    # mlflow.sklearn.log_model(clf,'Decision Tree')
 
-    # tag
-    mlflow.set_tag('Author','Keval')
-    mlflow.set_tag('Model','DecisionTree')
+    # # tag
+    # mlflow.set_tag('Author','Keval')
+    # mlflow.set_tag('Model','DecisionTree')
 
     print('Finished')
